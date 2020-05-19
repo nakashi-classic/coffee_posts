@@ -17,7 +17,20 @@
                 <li class="nav-item"><a href="#" class="nav-link">TimeLine</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Favorite</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">My coffee</a></li>
             </ul>
+             @if (Auth::id() == $user->id)
+                {!! Form::open(['route' => 'coffee_posts.store']) !!}
+                    <div class="form-group">
+                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
+                        {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
+                    </div>
+                {!! Form::close() !!}
+            @endif
+            @if (count($coffee_posts) > 0)
+                @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
+            @endif
         </div>
     </div>
 @endsection
