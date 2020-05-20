@@ -47,7 +47,7 @@ class Coffee_postsController extends Controller
         
     public function destroy($id)
     {
-        $micropost = \App\Coffee_post::find($id);
+        $coffee_post = \App\Coffee_post::find($id);
 
         if (\Auth::id() === $coffee_post->user_id) {
             $coffee_post->delete();
