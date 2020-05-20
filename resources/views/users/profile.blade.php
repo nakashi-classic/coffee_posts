@@ -12,7 +12,7 @@
         </div>
             @include('user_follow.follow_button', ['user' => $user])
     </aside>
-    <div>
+    <div class = "center">
     @if (Auth::id() == $user->id)
     @if (count($coffee_posts) > 0)
     @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
