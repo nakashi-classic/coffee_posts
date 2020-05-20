@@ -8,6 +8,24 @@
             <h3>飲んだコーヒー豆の情報を記録・共有するサイトです。</h3><br>
         </div>
     </div>
+    <div class="container d-flex flex-row justify-content-around">
+            <div class="col-md-3">
+                <p>コーヒーの情報を共有することのできるサイトです。</p>
+            </div>
+            <div class="col-md-3">offset-md-2 col-md-5</div>
+            <div class="col-md-3">offset-md-2 col-md-5</div>
+    </div>
+    <div class="container d-flex flex-row justify-content-around">
+            <div class="col-md-3">
+                <h5>コンセプト</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>{!! link_to_route('users.show', '投稿', ['id' => Auth::id()]) !!}</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>{!! link_to_route('users.show', 'プロフィール', ['id' => Auth::id()]) !!}</h5>
+            </div>
+    </div>
     @else
     <div class="center jumbotron">
         <div class="text-center">
