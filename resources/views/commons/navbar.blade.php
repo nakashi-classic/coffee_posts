@@ -14,7 +14,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-item">{!! link_to_route('users.show', 'マイプロフィール', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('users.profile', 'マイプロフィール', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-item">{!! link_to_route('users.show', '投稿する/投稿を見る', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>

@@ -80,4 +80,10 @@ class User extends Authenticatable
     {
         return $this->followings()->where('follow_id', $userId)->exists();
     }
+    public function feed_coffee_posts()
+    {
+        $follow_user_ids = $this->followings()->pluck('users.id')->toArray();
+        $follow_user_ids[] = $this->id;
+        return Coffee_post::whereIn('user_id', $follow_user_ids);
+    }
 }

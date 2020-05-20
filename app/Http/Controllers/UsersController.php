@@ -32,20 +32,6 @@ class UsersController extends Controller
         return view('users.show',$data);
     }
     
-    public function profile($id)
-    {
-        $user = User::find($id);
-        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
-
-        $data = [
-            'user' => $user,
-            'coffee_posts' => $coffee_posts,
-        ];
-
-        $data += $this->counts($user);
-
-        return view('users.profile',$data);
-    }
     public function followings($id)
     {
         $user = User::find($id);
@@ -74,5 +60,21 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+    public function profile($id)
+    {
+        $user = User::find($id);
+        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $followings = $user->followings()->paginate(10);
+        $followers = $user->followers()->paginate(10);
+        
+        $data = [
+            'user' => $user,
+            'coffee_posts' => $coffee_posts,
+        ];
+
+        $data += $this->counts($user);
+        return view('users.profile',$data);
     }
 }

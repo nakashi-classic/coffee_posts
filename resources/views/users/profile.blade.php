@@ -10,12 +10,15 @@
                 <img class="rounded img-fluid" src="{{ Gravatar::src($user->email, 500) }}" alt="">
             </div>
         </div>
-                @include('user_follow.follow_button', ['user' => $user])
+            @include('user_follow.follow_button', ['user' => $user])
     </aside>
-@if (Auth::id() == $user->id)
+    <div>
+    @if (Auth::id() == $user->id)
     @if (count($coffee_posts) > 0)
     @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
     @endif
-@endif
+    @endif
+    </div>
+
 
 @endsection

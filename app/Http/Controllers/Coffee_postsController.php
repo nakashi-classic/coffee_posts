@@ -11,7 +11,7 @@ class Coffee_postsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
+            $coffee_posts = $user->feed_coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
             
             $data = [
                 'user' => $user,
@@ -39,7 +39,7 @@ class Coffee_postsController extends Controller
             'roast' => $request->roast,
             'brew' => $request->brew,
             'score' => $request->score,
-            'comment'=>$request->score,
+            'comment'=>$request->comment,
         ]);
 
         return back();
