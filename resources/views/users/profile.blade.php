@@ -13,7 +13,7 @@
         </div>
     </div><br/>
     <div class = "offset-1 col-10 justify-content-center alert alert-warning">
-        <div class="text-center"><h3>コーヒーを記録する</h3></div>
+        <div class="text-center"><h3>コーヒーの記録</h3></div>
         <div class="offset-3">
     @if (Auth::id() == $user->id)
         @if (count($coffee_posts) > 0)

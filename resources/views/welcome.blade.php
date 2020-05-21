@@ -12,8 +12,8 @@
             <div class="col-md-3 alert alert-warning" role="alert">
                 <p>コーヒーの情報を共有することのできるサイトです。</p>
             </div>
-            <div class="col-md-3 alert alert-warning" role="alert">offset-md-2 col-md-5</div> 
-            <div class="col-md-3 alert alert-warning" role="alert">offset-md-2 col-md-5</div>
+            <div class="col-md-3 alert alert-warning" role="alert"><p>いろんな人とコーヒーの情報を共有することができます。</p></div> 
+            <div class="col-md-3 alert alert-warning" role="alert"><p>マイページから自分の投稿を確認できます。</p></div>
     </div>
     <div class="container d-flex flex-row justify-content-around">
             <div class="col-md-3 text-center">

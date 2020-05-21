@@ -65,7 +65,7 @@ class UsersController extends Controller
     public function profile($id)
     {
         $user = User::find($id);
-        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(5);
         $followings = $user->followings()->paginate(10);
         $followers = $user->followers()->paginate(10);
         
@@ -80,7 +80,7 @@ class UsersController extends Controller
     public function favorites($id)
     {
         $user = User::find($id);
-        $favorites = $user->favorites()->paginate(10);
+        $favorites = $user->favorites()->paginate(5);
 
         $data = [
             'user' => $user,
