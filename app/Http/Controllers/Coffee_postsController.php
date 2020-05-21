@@ -55,4 +55,20 @@ class Coffee_postsController extends Controller
 
         return back();
     }
+    
+    public function coffee_posts()
+    {
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $coffee_posts = $user->feed_coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'coffee_posts' => $coffee_posts,
+            ];
+        }
+        
+        return view('users.coffee_posts', $data);
+    }
 }

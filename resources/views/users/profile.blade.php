@@ -1,24 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <aside class="col-sm-4">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">{{ $user->name }}</h3>
-            </div>
-            <div class="card-body">
-                <img class="rounded img-fluid" src="{{ Gravatar::src($user->email, 500) }}" alt="">
-            </div>
+    <div class =" d-flex flex-row">
+        <div class="col-sm-4">
+        @include("users.card",['user' => $user])
         </div>
-            @include('user_follow.follow_button', ['user' => $user])
-    </aside>
+        <div class="col-sm-8">
+            <h3>プロフィール</h3>
+        @if (Auth::id() == $user->id)
+           {!! link_to_route('signup.get', 'プロフィールを編集する', [], ['class' => 'btn btn-lg btn-primary']) !!}
+        @endif
+        </div>
+    </div>
     <div class = "center">
     @if (Auth::id() == $user->id)
-    @if (count($coffee_posts) > 0)
-    @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
-    @endif
+        @if (count($coffee_posts) > 0)
+        @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
+        @endif
     @endif
     </div>
-
 
 @endsection
