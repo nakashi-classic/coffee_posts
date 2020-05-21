@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
     public function counts($user) {
-        $count_coffee_posts = $user->coffee_posts()->count();
+        $count_coffee_posts = $user->feed_coffee_posts()->count();
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
 
