@@ -12,4 +12,8 @@ class Coffee_post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function favorite_users()
+    {
+        return $this->belongsToMany(User::class,"favorites","coffee_post_id","user_id")->withTimestamps();
+    }
 }

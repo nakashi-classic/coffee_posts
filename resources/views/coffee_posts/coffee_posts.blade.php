@@ -12,6 +12,7 @@
                     <p class="mb-0">{!! nl2br(e($coffee_post->score)) !!}</p>
                 </div>
                 <div>
+                    @include('favorites.favorite_button', ['coffee_posts' => $coffee_posts])
                     @if (Auth::id() == $coffee_post->user_id)
                         {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}

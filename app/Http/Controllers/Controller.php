@@ -15,11 +15,13 @@ class Controller extends BaseController
         $count_coffee_posts = $user->feed_coffee_posts()->count();
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
+        $count_favorites =$user->favorites()->count();
 
         return [
             'count_coffee_posts' => $count_coffee_posts,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
+            'count_favorites' =>$count_favorites,
         ];
     }
 }

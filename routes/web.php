@@ -31,7 +31,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get("profile",'UsersController@profile')->name('users.profile');
-        Route::get("coffee_posts",'Coffee_postsController@profile')->name('users.coffee_posts');
+        Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
     });
+    
+    Route::group(['prefix' => 'coffee_posts/{id}'], function () {
+        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+        Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+    });
+    
     Route::resource('coffee_posts', 'Coffee_postsController');
 });

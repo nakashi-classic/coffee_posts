@@ -86,4 +86,45 @@ class User extends Authenticatable
         $follow_user_ids[] = $this->id;
         return Coffee_post::whereIn('user_id', $follow_user_ids);
     }
+    
+     public function favorites()
+    {
+        return $this->belongsToMany(Coffee_post::class, 'favorites', 'user_id', 'coffee_post_id')->withTimestamps();
+    }
+    
+     public function favorite($coffee_postId)
+    {
+        // 既にお気に入りしているかの確認
+        $exist = $this->is_favoriting($coffee_postId);
+        
+        if ($exist) {
+            // 既にお気に入りしていれば何もしない
+            return false;
+        } else {
+            // 未お気に入りであればお気に入りする
+            $this->favorites()->attach($coffee_postId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($coffee_postId)
+    {
+        // 既にお気に入りしているかの確認
+        $exist = $this->is_favoriting($coffee_postId);
+    
+        if ($exist) {
+        // 既にお気に入りしていればお気に入りを外す
+            $this->favorites()->detach($coffee_postId);
+            return true;
+        } else {
+        // 未お気に入りであれば何もしない
+            return false;
+        }
+    }
+    
+    public function is_favoriting($coffee_postId)
+    {
+        return $this->favorites()->where('coffee_post_id', $coffee_postId)->exists();
+    }
 }
+
