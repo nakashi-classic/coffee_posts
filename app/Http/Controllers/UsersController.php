@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
+        $coffee_posts = $user->feed_coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
             'user' => $user,
