@@ -11,13 +11,16 @@
            {!! link_to_route('signup.get', 'プロフィールを編集する', [], ['class' => 'btn btn-lg btn-primary']) !!}
         @endif
         </div>
-    </div>
-    <div class = "center">
+    </div><br/>
+    <div class = "offset-1 col-10 justify-content-center alert alert-warning">
+        <div class="text-center"><h3>コーヒーを記録する</h3></div>
+        <div class="offset-3">
     @if (Auth::id() == $user->id)
         @if (count($coffee_posts) > 0)
         @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
         @endif
     @endif
+        </div>
     </div>
 
 @endsection
