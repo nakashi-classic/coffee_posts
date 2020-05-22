@@ -40,4 +40,5 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     Route::resource('coffee_posts', 'Coffee_postsController');
+    // Route::get('coffee_posts/{id}/coffee_posts', 'Coffee_postsController@index_2')->name('coffee_posts.index_2');
 });

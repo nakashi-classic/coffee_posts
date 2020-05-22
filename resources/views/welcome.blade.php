@@ -20,10 +20,10 @@
                 <h5>コンセプト</h5>
             </div>
             <div class="col-md-3 text-center">
-                <h5>{!! link_to_route('users.show', '投稿', ['id' => Auth::id()]) !!}</h5>
+                <h5>{!! link_to_route('users.show', '投稿をみる', ['id' => Auth::id()]) !!}</h5>
             </div>
             <div class="col-md-3 text-center">
-                <h5>{!! link_to_route('users.profile', 'プロフィール', ['id' => Auth::id()]) !!}</h5>
+                <h5>{!! link_to_route('users.profile', 'マイページ/投稿する', ['id' => Auth::id()]) !!}</h5>
             </div>
     </div>
     @else

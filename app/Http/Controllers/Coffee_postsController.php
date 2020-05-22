@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Coffee_post;
 
 class Coffee_postsController extends Controller
 {
@@ -70,5 +71,51 @@ class Coffee_postsController extends Controller
         }
         
         return view('users.coffee_posts', $data);
+    }
+    
+    public function edit($id)
+    {
+        $coffee_post = Coffee_post::find($id);
+        
+        if (\Auth::id() === $coffee_post->user_id) {
+        return view('coffee_posts.edit', ['coffee_post' => $coffee_post,]);
+        }
+        return redirect("/");
+    }
+    
+    public function update(Request $request, $id)
+    {   
+        $coffee_post = \App\Coffee_post::find($id);
+        $this->validate($request, [
+            'coffee_name' => 'required|max:191',
+            'purchase_store' => 'required|max:191',
+            'roast' => 'required|max:191',
+            'brew' => 'required|max:191',
+            'score' => 'required|max:10',
+            'comment'=>"required|max:191",
+        ]);
+        
+        if (\Auth::id() === $coffee_post->user_id){
+        $request->user()->coffee_posts()->create([
+            'coffee_name' => $request->coffee_name,
+            'purchase_store' => $request->purchase_store,
+            'roast' => $request->roast,
+            'brew' => $request->brew,
+            'score' => $request->score,
+            'comment'=>$request->comment,
+        ]);
+        }
+        return redirect("/");
+    }
+    public function show($id)
+    {
+        $task = \App\Coffee_post::find($id);
+        
+        if (\Auth::id() === $coffee_post->user_id) {
+        return view('coffee_posts.show', [
+            'coffee_post' => $coffee_post,
+        ]);
+        }
+        return redirect("/");
     }
 }

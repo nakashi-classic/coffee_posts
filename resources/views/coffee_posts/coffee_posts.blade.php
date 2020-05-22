@@ -11,11 +11,11 @@
                     <p class="mb-0">{!! nl2br(e($coffee_post->brew)) !!}</p>
                     <p class="mb-0">{!! nl2br(e($coffee_post->score)) !!}</p>
                 </div>
-                <div>
+                <div class =row d-flex>
                     @include('favorites.favorite_button', ['coffee_posts' => $coffee_posts])
                     @if (Auth::id() == $coffee_post->user_id)
                         {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     @endif
                 </div>
