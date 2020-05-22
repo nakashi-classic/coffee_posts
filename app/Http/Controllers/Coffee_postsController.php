@@ -24,7 +24,8 @@ class Coffee_postsController extends Controller
     }
     
     public function store(Request $request)
-    {
+    {   
+        $coffee_post = new Coffee_post;
         $this->validate($request, [
             'coffee_name' => 'required|max:191',
             'purchase_store' => 'required|max:191',
@@ -109,7 +110,7 @@ class Coffee_postsController extends Controller
     }
     public function show($id)
     {
-        $task = \App\Coffee_post::find($id);
+        $coffee_post = \App\Coffee_post::find($id);
         
         if (\Auth::id() === $coffee_post->user_id) {
         return view('coffee_posts.show', [
