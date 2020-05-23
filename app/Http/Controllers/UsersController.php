@@ -94,7 +94,38 @@ class UsersController extends Controller
     public function profile_edit($id)
     {
         $user = User::find($id);
-        $data += $this->counts($user);
-        return view('users.profile_edit');
+        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(5);
+        $data = [
+            'user' => $user,
+            'coffee_posts' => $coffee_posts,
+        ];
+        return view('users.profile_edit',$data);
+    }
+    public function store(Request $request)
+    {   
+        $user = new User;
+        $this->validate($request, [
+            'profile_content' => 'required|max:191',
+        ]);
+
+        $request->user()->users()->create([
+            'profile_content' => $request->profile_content,
+        ]);
+
+        return back();
+    }
+    public function update(Request $request, $id)
+    {   
+        $user = \App\User::find($id);
+        $this->validate($request, [
+            'profile_content' => 'required|max:191',
+        ]);
+        
+        if (\Auth::id() === $user->user_id){
+        $request->user()->users()->create([
+            'profile_content' => $request->profile_content,
+        ]);
+        }
+         return redirect("/");
     }
 }
