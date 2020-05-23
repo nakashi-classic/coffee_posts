@@ -3,13 +3,9 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>id = {{ $coffee_post->id }} のタスク詳細ページ</h1>
+    <h1>投稿したコーヒーの詳細</h1>
 
     <table class="table table-bordered">
-        <tr>
-            <th>id</th>
-            <td>{{ $coffee_post->id }}</td>
-        </tr>
         <tr>
             <th>コーヒー名</th>
             <td>{{ $coffee_post->coffee_name }}</td>
@@ -35,10 +31,11 @@
             <td>{{ $coffee_post->comment }}</td>
         </tr>
     </table>
-    {!! link_to_route('coffee_posts.edit', 'このタスクを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-light']) !!}
     
-    {!! Form::model($coffee_post, ['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
-        {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+    {!! link_to_route('coffee_posts.edit', 'このコーヒーを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-light']) !!}
+    
+    {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
+            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
     {!! Form::close() !!}
-
+    
 @endsection

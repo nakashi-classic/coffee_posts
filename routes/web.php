@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get("profile",'UsersController@profile')->name('users.profile');
+        Route::get("profile_edit",'UsersController@profile_edit')->name('users.profile_edit');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
     });
     
@@ -40,5 +41,4 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     Route::resource('coffee_posts', 'Coffee_postsController');
-    // Route::get('coffee_posts/{id}/coffee_posts', 'Coffee_postsController@index_2')->name('coffee_posts.index_2');
 });

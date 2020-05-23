@@ -6,17 +6,14 @@
                 <div>
                     {!! link_to_route('users.show', $coffee_post->user->name, ['id' => $coffee_post->user->id]) !!} <span class="text-muted">posted at {{ $coffee_post->created_at }}</span>
                 </div>
-                @foreach ($coffee_post as $cofffee_post)
                 <tbody>
                     <tr>
-                    <td>{!! link_to_route('coffee_posts.show', $coffee_post->id, ['id' => $coffee_post->id]) !!}</td>
                     <td class="mb-0">{!! nl2br(e($coffee_post->coffee_name)) !!}</td>
                     <td class="mb-0">{!! nl2br(e($coffee_post->brew)) !!}</td>
                     <td class="mb-0">{!! nl2br(e($coffee_post->score)) !!}</td>
-                     </tr>
+                    <td>{!! link_to_route('coffee_posts.show', "詳細", ['id' => $coffee_post->id]) !!}</td>
+                    </tr>
                 </tbody>
-                @endforeach
-                
                 <div class =row d-flex>
                     @include('favorites.favorite_button', ['coffee_posts' => $coffee_posts])
                     @if (Auth::id() == $coffee_post->user_id)

@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>id: {{ $coffee_posts->id }} のタスク編集ページ</h1>
+    <h1>投稿したコーヒーの編集ページ</h1>
 
     <div class="row">
         <div class="col-6">

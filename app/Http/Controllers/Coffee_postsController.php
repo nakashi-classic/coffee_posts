@@ -53,6 +53,7 @@ class Coffee_postsController extends Controller
 
         if (\Auth::id() === $coffee_post->user_id) {
             $coffee_post->delete();
+            return redirect("/");
         }
 
         return back();
@@ -106,17 +107,17 @@ class Coffee_postsController extends Controller
             'comment'=>$request->comment,
         ]);
         }
-        return redirect("/");
+         return redirect("/");
     }
     public function show($id)
     {
         $coffee_post = \App\Coffee_post::find($id);
+        $user = \Auth::user();
         
-        if (\Auth::id() === $coffee_post->user_id) {
-        return view('coffee_posts.show', [
-            'coffee_post' => $coffee_post,
-        ]);
-        }
-        return redirect("/");
+        $data = [
+                'user' => $user,
+                'coffee_post' => $coffee_post,
+            ];
+        return view('coffee_posts.show',$data);
     }
 }

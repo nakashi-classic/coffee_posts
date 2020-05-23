@@ -91,4 +91,10 @@ class UsersController extends Controller
 
         return view('users.favorites', $data);
     }
+    public function profile_edit($id)
+    {
+        $user = User::find($id);
+        $data += $this->counts($user);
+        return view('users.profile_edit');
+    }
 }
