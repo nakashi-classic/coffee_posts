@@ -11,11 +11,31 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(10);
-
-        return view('users.index', [
-            'users' => $users,
+        //
+    }
+     // getでusers/createにアクセスされた場合の「新規登録画面表示処理」
+    public function create()
+    {
+        //
+    }
+    // postでusers/にアクセスされた場合の「新規登録処理」
+     public function store(Request $request)
+    {   
+        $profile_content = new User;
+        $this->validate($request, [
+            'profile_content' => 'required|max:191',
         ]);
+
+        $request->user()->coffee_posts()->create([
+            'profile_content' => $request->profile_content,
+        ]);
+
+        return back();
+    }
+    // getでusers/id/editにアクセスされた場合の「更新画面表示処理」
+    public function edit($id)
+    {
+        //
     }
     public function show($id)
     {
@@ -30,6 +50,29 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.show',$data);
+    }
+    // putまたはpatchでusers/idにアクセスされた場合の「更新処理」
+    public function update(Request $request, $id)
+    {   
+        $profile_content = User::find($id);
+        
+        if (\Auth::id() === $profile_content->user_id){
+        $profile_content = new User;
+        $profile_content->prpfile_content = $request->profile_content;
+        $profile_content->save();
+        }
+         return redirect("/");
+    }
+    public function destroy($id)
+    {
+        $profile_content = \App\User::find($id);
+
+        if (\Auth::id() === $profile_content->user_id) {
+            $profile_content->delete();
+            return redirect("/");
+        }
+
+        return back();
     }
     
     public function followings($id)
@@ -91,41 +134,15 @@ class UsersController extends Controller
 
         return view('users.favorites', $data);
     }
+    
     public function profile_edit($id)
     {
+        $profile_content = User::find($id);
         $user = User::find($id);
-        $coffee_posts = $user->coffee_posts()->orderBy('created_at', 'desc')->paginate(5);
         $data = [
             'user' => $user,
-            'coffee_posts' => $coffee_posts,
+            'profile_content' => $profile_content,
         ];
         return view('users.profile_edit',$data);
-    }
-    public function store(Request $request)
-    {   
-        $user = new User;
-        $this->validate($request, [
-            'profile_content' => 'required|max:191',
-        ]);
-
-        $request->user()->users()->create([
-            'profile_content' => $request->profile_content,
-        ]);
-
-        return back();
-    }
-    public function update(Request $request, $id)
-    {   
-        $user = \App\User::find($id);
-        $this->validate($request, [
-            'profile_content' => 'required|max:191',
-        ]);
-        
-        if (\Auth::id() === $user->user_id){
-        $request->user()->users()->create([
-            'profile_content' => $request->profile_content,
-        ]);
-        }
-         return redirect("/");
     }
 }

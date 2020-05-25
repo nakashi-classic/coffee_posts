@@ -59,22 +59,6 @@ class Coffee_postsController extends Controller
         return back();
     }
     
-    public function coffee_posts()
-    {
-        $data = [];
-        if (\Auth::check()) {
-            $user = \Auth::user();
-            $coffee_posts = $user->feed_coffee_posts()->orderBy('created_at', 'desc')->paginate(10);
-            
-            $data = [
-                'user' => $user,
-                'coffee_posts' => $coffee_posts,
-            ];
-        }
-        
-        return view('users.coffee_posts', $data);
-    }
-    
     public function edit($id)
     {
         $coffee_post = Coffee_post::find($id);
@@ -119,5 +103,10 @@ class Coffee_postsController extends Controller
                 'coffee_post' => $coffee_post,
             ];
         return view('coffee_posts.show',$data);
+    }
+    public function post($id)
+    {
+        $user = User::find($id);
+        return view('coffee_posts.post',['user' => $user,]);
     }
 }

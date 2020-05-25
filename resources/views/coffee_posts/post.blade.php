@@ -1,19 +1,5 @@
-@extends('layouts.app')
 
-@section('content')
-    <div class =" d-flex flex-row">
-        <div class="col-sm-4">
-        @include("users.card",['user' => $user])
-        </div>
-        <div class="col-sm-8">
-            <h3>プロフィール</h3>
-        @if (Auth::id() == $user->id)
-        <div>$profile_content->"profile_content"</div>
-           {!! link_to_route('users.profile_edit', 'プロフィールを編集する',['id' => Auth::id()],["class"=>"nav-link btn btn-primary"]) !!}
-        @endif
-        </div>
-    </div><br/>
-    @if (Auth::id() == $user->id)
+@if (Auth::id() == $user->id)
     {!! Form::open(['route' => 'coffee_posts.store']) !!}
         <div class ="col-sm-12 text-center"><h2>投稿する</h2></div>
         <div class="form-group row alert alert-info" role="alert">
@@ -32,5 +18,4 @@
             {!! Form::submit('投稿する', ['class' => 'btn btn-primary btn-block']) !!}
         </div>
     {!! Form::close() !!}
-    @endif
-@endsection
+@endif

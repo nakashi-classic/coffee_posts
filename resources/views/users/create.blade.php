@@ -3,21 +3,16 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>タスク新規作成ページ</h1>
+    <h1>プロフィール新規作成</h1>
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($task, ['route' => 'tasks.store']) !!}
+            {!! Form::model($profile_content, ['route' => 'users.store']) !!}
                  <div class="form-group">
-                    {!! Form::label('status', 'ステータス:') !!}
+                    {!! Form::label('profile_content', 'プロフィール') !!}
                     {!! Form::text('status', null, ['class' => 'form-control']) !!}
                 </div>
                 
-                <div class="form-group">
-                    {!! Form::label('content', 'タスク:') !!}
-                    {!! Form::text('content', null, ['class' => 'form-control']) !!}
-                </div>
-        
                 {!! Form::submit('追加', ['class' => 'btn btn-primary']) !!}
         
             {!! Form::close() !!}
