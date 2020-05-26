@@ -17,30 +17,7 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
-     // getでusers/createにアクセスされた場合の「新規登録画面表示処理」
-    public function create()
-    {
-        //
-    }
-    // postでusers/にアクセスされた場合の「新規登録処理」
-     public function store(Request $request)
-    {   
-        $profile_content = new User;
-        $this->validate($request, [
-            'profile_content' => 'required|max:191',
-        ]);
 
-        $request->user()->coffee_posts()->create([
-            'profile_content' => $request->profile_content,
-        ]);
-
-        return back();
-    }
-    // getでusers/id/editにアクセスされた場合の「更新画面表示処理」
-    public function edit($id)
-    {
-        //
-    }
     public function show($id)
     {
         $user = User::find($id);
@@ -54,29 +31,6 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.show',$data);
-    }
-    // putまたはpatchでusers/idにアクセスされた場合の「更新処理」
-    public function update(Request $request, $id)
-    {   
-        $profile_content = User::find($id);
-        
-        if (\Auth::id() === $profile_content->user_id){
-        $profile_content = new User;
-        $profile_content->prpfile_content = $request->profile_content;
-        $profile_content->save();
-        }
-         return redirect("/");
-    }
-    public function destroy($id)
-    {
-        $profile_content = \App\User::find($id);
-
-        if (\Auth::id() === $profile_content->user_id) {
-            $profile_content->delete();
-            return back();
-        }
-
-        return back();
     }
     
     public function followings($id)
@@ -141,7 +95,7 @@ class UsersController extends Controller
     
     public function profile_edit($id)
     {
-        $profile_content = User::find($id);
+        $profile_content = Profile::find($id);
         $user = User::find($id);
         $data = [
             'user' => $user,

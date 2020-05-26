@@ -42,4 +42,5 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('coffee_posts', 'Coffee_postsController');
     Route::get('post', 'Coffee_postsController@post')->name('coffee_posts.post');
+    Route::resource('profiles', 'ProfilesController');
 });

@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
-<!-- ここにページ毎のコンテンツを書く -->
-    <h1>プロフィール新規作成</h1>
-
+@if (Auth::id() == $user->id)
+<h1>プロフィール新規作成</h1>
     <div class="row">
         <div class="col-6">
-            {!! Form::model($profile_content, ['route' => 'users.store']) !!}
+            {!! Form::model($profile_content, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
                  <div class="form-group">
                     {!! Form::label('profile_content', 'プロフィール') !!}
                     {!! Form::text('status', null, ['class' => 'form-control']) !!}
@@ -18,4 +16,5 @@
             {!! Form::close() !!}
         </div>
     </div>
+@endif
 @endsection

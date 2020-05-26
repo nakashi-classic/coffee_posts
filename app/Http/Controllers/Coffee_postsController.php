@@ -75,7 +75,7 @@ class Coffee_postsController extends Controller
         if (\Auth::id() === $coffee_post->user_id) {
         return view('coffee_posts.edit', ['coffee_post' => $coffee_post,]);
         }
-        return redirect("/");
+        return back();
     }
     
     public function update(Request $request, $id)

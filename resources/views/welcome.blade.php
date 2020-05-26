@@ -5,11 +5,15 @@
     <div class="row">
             <aside class="col-sm-4">
                 @include('users.card', ['user' => Auth::user()])
+                <div class="mb-0">自己紹介：{{}}</div>
+                @if (Auth::id() == $user->id)
+                <p>{!! link_to_route('profiles.create', "自己紹介を追加", ['id' => Auth::id()], ['class' => 'btn btn-success btn-sm']) !!}</p>
+                @endif
             </aside>
             <div class="col-sm-8">
                 @if (count($coffee_posts) > 0)
-                <h2 class="text-center alert alert-dark" role="alert"k text-white rounded">タイムライン</h2>
-                    @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
+                <h2 class="text-center alert alert-success text-dark round" role="alert">タイムライン</h2>
+                <div class="rounded" role="alert">@include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])</div>
                 @endif
             </div>
         </div>
@@ -17,7 +21,7 @@
     <div class="center jumbotron">
         <div class="text-center">
             <h1>一緒に楽しいコーヒーライフを！</h1>
-            <h3>飲んだコーヒー豆の情報を記録・共有するサイトです。</h3><br>
+            <h4>飲んだコーヒー豆の情報を記録・共有するサイトです。</h4><br>
             {!! link_to_route('signup.get', '会員登録', [], ['class' => 'btn btn-lg btn-primary']) !!}
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use APP\Profile;
 
 class User extends Authenticatable
 {
@@ -87,7 +88,7 @@ class User extends Authenticatable
         return Coffee_post::whereIn('user_id', $follow_user_ids);
     }
     
-     public function favorites()
+    public function favorites()
     {
         return $this->belongsToMany(Coffee_post::class, 'favorites', 'user_id', 'coffee_post_id')->withTimestamps();
     }
@@ -125,6 +126,12 @@ class User extends Authenticatable
     public function is_favoriting($coffee_postId)
     {
         return $this->favorites()->where('coffee_post_id', $coffee_postId)->exists();
+    }
+    
+    //   ユーザーに関連するプロフィールレコードを取得
+    public function profiles()
+    {
+        return $this->hasOne('App\Profile');
     }
 }
 
