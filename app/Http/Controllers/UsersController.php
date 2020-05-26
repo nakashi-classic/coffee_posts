@@ -11,7 +11,11 @@ class UsersController extends Controller
 {
     public function index()
     {
-        //
+        $users = User::orderBy('id', 'desc')->paginate(10);
+
+        return view('users.index', [
+            'users' => $users,
+        ]);
     }
      // getでusers/createにアクセスされた場合の「新規登録画面表示処理」
     public function create()

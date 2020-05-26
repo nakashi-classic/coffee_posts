@@ -8,10 +8,9 @@
                 </div>
                 <tbody>
                     <tr>
-                    <td class="mb-0">{!! nl2br(e($coffee_post->coffee_name)) !!}</td>
-                    <td class="mb-0">{!! nl2br(e($coffee_post->brew)) !!}</td>
-                    <td class="mb-0">{!! nl2br(e($coffee_post->score)) !!}</td>
-                    <td>{!! link_to_route('coffee_posts.show', "詳細", ['id' => $coffee_post->id]) !!}</td>
+                    <p>コーヒー名：<td class="mb-0">{!! nl2br(e($coffee_post->coffee_name)) !!}</td></p>
+                    <p>焙煎度：<td class="mb-0">{!! nl2br(e($coffee_post->roast)) !!}</td></p>
+                    <p>コメント：<td class="mb-0">{!! nl2br(e($coffee_post->comment)) !!}</td></p>
                     </tr>
                 </tbody>
                 <div class =row d-flex>
@@ -21,6 +20,7 @@
                             {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     @endif
+                <p>{!! link_to_route('coffee_posts.show', "詳細", ['id' => $coffee_post->id], ['class' => 'btn btn-sm btn-primary']) !!}</p>
                 </div>
             </div>
         </li>

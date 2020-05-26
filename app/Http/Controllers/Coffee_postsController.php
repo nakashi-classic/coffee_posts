@@ -22,7 +22,16 @@ class Coffee_postsController extends Controller
         
         return view('welcome', $data);
     }
-    
+     public function create()
+    {   
+        $user = \Auth::user();
+        $coffee_post = new Coffee_post;
+        $data = [
+                'user' => $user,
+                'coffee_post' => $coffee_post,
+            ];
+        return view('coffee_posts.create',$data);
+    }
     public function store(Request $request)
     {   
         $coffee_post = new Coffee_post;
@@ -44,7 +53,7 @@ class Coffee_postsController extends Controller
             'comment'=>$request->comment,
         ]);
 
-        return back();
+        return redirect("/");
     }
         
     public function destroy($id)
@@ -91,7 +100,7 @@ class Coffee_postsController extends Controller
             'comment'=>$request->comment,
         ]);
         }
-         return redirect("/");
+        return redirect("/");
     }
     public function show($id)
     {
