@@ -5,7 +5,7 @@
 <!-- ここにページ毎のコンテンツを書く -->
     <h1>投稿したコーヒーの編集ページ</h1>
 
-    <div class="row">
+    <div class="row center">
         <div class="col-6">
             {!! Form::model($coffee_post, ['route' => ['coffee_posts.update', $coffee_post->id], 'method' => 'put']) !!}
                 <div class="form-group">

@@ -3,14 +3,12 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-   <h1>投稿したコーヒーの編集ページ</h1>
+   <h1 class="text-center">コーヒーの情報を投稿する</h1>
 
+    @if (Auth::id() == $user->id)
     <div class="row">
-        <div class="col-6">
-            @if (Auth::id() == $user->id)
     {!! Form::open(['route' => 'coffee_posts.store']) !!}
-        <div class ="col-sm-12 text-center"><h2>投稿する</h2></div>
-        <div class="form-group row alert alert-info" role="alert">
+        <div class="offset-sm-2 col-sm-8 form-group row alert alert-dark" role="alert">
             <p>コーヒー名</p>
             {!! Form::text('coffee_name', old('coffee_name'), ['class' => 'form-control', 'rows' => '2']) !!}
             <p>購入店舗</p>
@@ -19,15 +17,14 @@
             {!! Form::text('roast', old('roast'), ['class' => 'form-control', 'rows' => '2']) !!}
             <p>抽出方法</p>
             {!! Form::text('brew', old('brew'), ['class' => 'form-control', 'rows' => '2']) !!}
-            <p>評価</p>
+            <p>評価(1~5)</p>
             {!! Form::text('score', old('score'), ['class' => 'form-control', 'rows' => '2']) !!}
             <p>コメント</p>
             {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '2']) !!}
-            {!! Form::submit('投稿する', ['class' => 'btn btn-primary btn-block']) !!}
         </div>
+    <div class="col-12 text-center">{!! Form::submit('投稿する', ['class' => 'btn btn-lg btn-success']) !!}</div>
     {!! Form::close() !!}
-    @endif
-        
-        </div>
     </div>
+    @endif
+    
 @endsection

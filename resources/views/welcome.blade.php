@@ -8,6 +8,7 @@
             </aside>
             <div class="col-sm-8">
                 @if (count($coffee_posts) > 0)
+                <h2 class="text-center alert alert-dark" role="alert"k text-white rounded">タイムライン</h2>
                     @include('coffee_posts.coffee_posts', ['coffee_posts' => $coffee_posts])
                 @endif
             </div>

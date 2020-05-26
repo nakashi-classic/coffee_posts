@@ -23,7 +23,7 @@
             <td>{{ $coffee_post->brew }}</td>
         </tr>
         <tr>
-            <th>評価</th>
+            <th>評価(1~5)</th>
             <td>{{ $coffee_post->score }}</td>
         </tr>
         <tr>

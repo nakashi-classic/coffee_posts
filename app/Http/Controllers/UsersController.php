@@ -73,7 +73,7 @@ class UsersController extends Controller
 
         if (\Auth::id() === $profile_content->user_id) {
             $profile_content->delete();
-            return redirect("/");
+            return back();
         }
 
         return back();
