@@ -6,7 +6,7 @@
    <h1 class="text-center">コーヒーの情報を投稿する</h1>
 
     @if (Auth::id() == $user->id)
-    <div class="row">
+    <div class="row text-center">
     {!! Form::open(['route' => 'coffee_posts.store']) !!}
         <div class="offset-sm-2 col-sm-8 form-group row alert alert-success" role="alert">
             <p>コーヒー名</p>
@@ -22,7 +22,7 @@
             <p>コメント</p>
             {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
-    <div class="col-12 text-center">{!! Form::submit('投稿する', ['class' => 'btn btn-lg btn-success']) !!}</div></br>
+    <div class="center">{{ Form::button('<i class="fas fa-coffee"></i>', ['type' => 'submit','class' => 'btn btn-success btn-lg' ] )  }}</div>
     {!! Form::close() !!}
     </div>
     @endif

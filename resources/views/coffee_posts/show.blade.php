@@ -35,7 +35,7 @@
     {!! link_to_route('coffee_posts.edit', 'このコーヒーを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-success']) !!}
     
     {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
-            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
+             {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit','class' => 'btn btn-danger btn-sm' ] )  }}
     {!! Form::close() !!}
     @endif
 @endsection

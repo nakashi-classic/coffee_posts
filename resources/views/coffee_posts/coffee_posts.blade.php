@@ -17,7 +17,7 @@
                     @include('favorites.favorite_button', ['coffee_posts' => $coffee_posts])
                     @if (Auth::id() == $coffee_post->user_id)
                         {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit','class' => 'btn btn-danger btn-sm' ] )  }}
                         {!! Form::close() !!}
                     @endif
                 <p>{!! link_to_route('coffee_posts.show', "詳細", ['id' => $coffee_post->id], ['class' => 'btn btn-sm btn-primary']) !!}</p>
