@@ -29,7 +29,7 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('アカウントを作成する', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('アカウントを作成する', ['class' => 'btn btn-success btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>

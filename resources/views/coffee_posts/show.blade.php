@@ -5,34 +5,34 @@
 <!-- ここにページ毎のコンテンツを書く -->
     <h1>投稿したコーヒーの詳細</h1>
 
-    <table class="table table-bordered">
-        <tr>
-            <th>コーヒー名</th>
+    <table class="table table-hover">
+        <tr class="table-success">
+            <td>コーヒー名</td>
             <td>{{ $coffee_post->coffee_name }}</td>
         </tr>
         <tr>
-            <th>購入店舗</th>
+            <td>購入店舗</td>
             <td>{{ $coffee_post->purchase_store }}</td>
         </tr>
-        <tr>
-            <th>焙煎度</th>
+        <tr class="table-success">
+            <td>焙煎度</td>
             <td>{{ $coffee_post->roast }}</td>
         </tr>
         <tr>
-            <th>抽出方法</th>
+            <td>抽出方法</td>
             <td>{{ $coffee_post->brew }}</td>
         </tr>
-        <tr>
-            <th>評価(1~5)</th>
+        <tr class="table-success">
+            <td>評価(1~5)</td>
             <td>{{ $coffee_post->score }}</td>
         </tr>
         <tr>
-            <th>コメント</th>
+            <td>コメント</td>
             <td>{{ $coffee_post->comment }}</td>
         </tr>
     </table>
      @if (Auth::id() == $coffee_post->user_id)
-    {!! link_to_route('coffee_posts.edit', 'このコーヒーを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-light']) !!}
+    {!! link_to_route('coffee_posts.edit', 'このコーヒーを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-success']) !!}
     
     {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
             {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}

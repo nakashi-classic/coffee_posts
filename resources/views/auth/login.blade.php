@@ -19,7 +19,7 @@
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
-                    {!! Form::submit('ログイン', ['class' => 'btn btn-primary btn-block']) !!}
+                    {!! Form::submit('ログイン', ['class' => 'btn btn-success btn-block']) !!}
                     {!! Form::close() !!}
 
             <p class="text-center mt-2">{!! link_to_route('signup.get', '会員登録がお済でない方はこちら') !!}</p>
