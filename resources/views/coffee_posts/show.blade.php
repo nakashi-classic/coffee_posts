@@ -31,11 +31,11 @@
             <td>{{ $coffee_post->comment }}</td>
         </tr>
     </table>
-    
+     @if (Auth::id() == $coffee_post->user_id)
     {!! link_to_route('coffee_posts.edit', 'このコーヒーを編集', ['id' => $coffee_post->id], ['class' => 'btn btn-light']) !!}
     
     {!! Form::open(['route' => ['coffee_posts.destroy', $coffee_post->id], 'method' => 'delete']) !!}
             {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
     {!! Form::close() !!}
-    
+    @endif
 @endsection
