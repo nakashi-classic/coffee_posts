@@ -18,14 +18,13 @@ class ProfilesController extends Controller
     }
     public function store(Request $request)
     {   
-        $profile = new Profile;
         $this->validate($request, [
             'profile' => 'required|max:191',
         ]);
-
-        $request->user()->profiles()->create([
-            'profile' => $request->profile,
-        ]);
+        $profile=Profile::updateOrCreate(
+            ['user_id'=> \Auth::id()],
+            ["profile" => $request->profile]
+            );
 
         return redirect("/");
     }

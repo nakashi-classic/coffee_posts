@@ -5,7 +5,9 @@
     <div class="row">
             <aside class="col-sm-4">
                 @include('users.card', ['user' => Auth::user()])
-                <div class="mb-0">自己紹介：{{}}</div>
+                @if ($user->profiles()->exists())
+                <div class="mb-0">自己紹介：{{ $user->profiles->profile }}</div>
+                @endif
                 @if (Auth::id() == $user->id)
                 <p>{!! link_to_route('profiles.create', "自己紹介を追加", ['id' => Auth::id()], ['class' => 'btn btn-success btn-sm']) !!}</p>
                 @endif

@@ -4,9 +4,11 @@
     <div class="row">
         <aside class="col-sm-4">
             @include('users.card', ['user' => $user])
-            <div class="mb-0">自己紹介：{!! nl2br(e($user->profile_content)) !!}</div>
+            @if ($user->profiles()->exists())
+                <div class="mb-0">自己紹介：{{ $user->profiles->profile }}</div>
+            @endif
             @if (Auth::id() == $user->id)
-            <p>{!! link_to_route('profiles.create', "自己紹介を追加", ['id' => Auth::id()], ['class' => 'btn btn-sm btn-primary']) !!}</p>
+            <p>{!! link_to_route('profiles.create', "自己紹介を追加", ['id' => Auth::id()], ['class' => 'btn btn-sm btn-success']) !!}</p>
             @endif
         </aside>
         <div class="col-sm-8">
