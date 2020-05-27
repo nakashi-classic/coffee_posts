@@ -3,17 +3,17 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>プロフィール新規作成</h1>
+    <h1 class="text-center">プロフィール新規作成</h1></br>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             {!! Form::model($user, ['route' => 'profiles.store']) !!}
-                <div class="form-group">
-                    {!! Form::label('profile', 'プロフィール') !!}
-                    {!! Form::text('profile', null, ['class' => 'form-control']) !!}
+                <div class="form-group text-center">
+                    <h3>{!! Form::label('profile', 'プロフィール') !!}</h3>
+                    {!! Form::textarea('profile', null, ['class' => 'form-control']) !!}
                 </div>
                 
-            {!! Form::submit('追加', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('更新', ['class' => 'btn btn-success btn-lg']) !!}
         
             {!! Form::close() !!}
         </div>
