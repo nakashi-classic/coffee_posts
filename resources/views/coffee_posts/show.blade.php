@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
-    <h1>投稿したコーヒーの詳細</h1>
+    <h1 class="text-center">投稿したコーヒーの詳細</h1>
 
     <table class="table table-hover">
         <tr class="table-success">
